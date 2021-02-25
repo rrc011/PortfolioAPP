@@ -69,7 +69,7 @@ export class UploadComponent implements OnInit {
 			.request(req)
 			.toPromise()
 			.then((r: HttpResponse<any>) => {
-				if (r.status == 200) this._alertService.success('Subido exitosamente').then(() => this.init());
+				if (r.status == 200) this._alertService.success('Subido exitosamente').then(() => window.location.reload());
 			});
 	}
 
