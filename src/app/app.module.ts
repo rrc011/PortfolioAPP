@@ -24,6 +24,7 @@ import {PersonalInformationModule} from './features/personal-information/persona
 import {UploadModule} from './features/upload/upload.module';
 import {ContactModule} from './features/contact/contact.module';
 import {SocialMediaModule} from './features/social-media/social-media.module';
+import {ServiceProxyModule} from './core/services/service-proxy.module';
 
 registerLocaleData(en);
 
@@ -47,6 +48,7 @@ registerLocaleData(en);
 		BrowserAnimationsModule,
 		ContactModule,
 		SocialMediaModule,
+		ServiceProxyModule,
 	],
 	providers: [
 		{provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},

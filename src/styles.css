@@ -6,3 +6,20 @@
 	bottom: 0;
 	left: 0;
 }
+
+.ant-modal-header {
+	background-image: linear-gradient(to right, #4458dc 0%, #854fee 100%),
+		radial-gradient(circle at top left, #4458dc, #854fee);
+}
+
+.ant-modal-title {
+	color: white;
+}
+
+.ant-modal-content {
+	margin-top: 2em;
+}
+
+.ant-modal-close {
+	color: white;
+}

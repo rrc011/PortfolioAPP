@@ -1,0 +1,142 @@
+<!--================ Start About Us Area =================-->
+<section class="about_area section_gap">
+	<div class="container">
+		<div class="row justify-content-start align-items-center">
+			<div class="col">
+				<div class="row d-flex justify-content-between" style="margin-bottom: 1rem">
+					<h1>Management Portfolio</h1>
+					<button type="button" (click)="showModal(undefined)" class="primary_btn btn-sm">
+						<i class="fa fa-plus-circle" aria-hidden="true"></i> New
+					</button>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<nz-table
+								nzShowSizeChanger
+								[nzData]="lst"
+								[nzFrontPagination]="false"
+								[nzTotal]="totalItems"
+								[nzPageSize]="pageSize"
+								[nzPageIndex]="pageIndex"
+							>
+								<thead>
+									<tr>
+										<th>Title</th>
+										<th>Description</th>
+										<th>Url</th>
+										<th>Options</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let data of lst">
+										<td>{{ data.title }}</td>
+										<td>{{ data.description }}</td>
+										<td>
+											<a href="{{ data.url }}" target="_blank" rel="noopener noreferrer">{{ data.url }}</a>
+										</td>
+										<td>
+											<nz-button-group>
+												<button nz-button nzType="primary" (click)="showModal(data)">Edit</button>
+												<button nz-button nzType="primary" nzDanger (click)="delete(data._id)">Delete</button>
+											</nz-button-group>
+										</td>
+									</tr>
+								</tbody>
+							</nz-table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--================ End About Us Area =================-->
+
+<nz-modal
+	[(nzVisible)]="isVisible"
+	[nzTitle]="model._id ? 'Edit Project' : 'New Project'"
+	(nzOnCancel)="handleCancel()"
+	[nzFooter]="modalFooter"
+>
+	<form nz-form [nzLayout]="'vertical'" #form="ngForm">
+		<nz-form-item>
+			<nz-form-label nzRequired nzFor="name">Title</nz-form-label>
+			<nz-form-control nzErrorTip="Please input project name!" nzHasFeedback>
+				<nz-input-group nzPrefixIcon="edit">
+					<input
+						[(ngModel)]="model.title"
+						required
+						type="text"
+						name="title"
+						id="title"
+						nz-input
+						placeholder="Project title"
+					/>
+				</nz-input-group>
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-label nzRequired nzFor="url">Url</nz-form-label>
+			<nz-form-control [nzErrorTip]="urlError" nzHasFeedback>
+				<nz-input-group nzPrefixIcon="edit">
+					<input
+						[(ngModel)]="model.url"
+						required
+						type="text"
+						name="url"
+						id="url"
+						nz-input
+						placeholder="Project url"
+						#url="ngModel"
+					/>
+					<ng-template #urlError let-control>
+						<ng-container *ngIf="url.hasError('required')">Please input project url!</ng-container>
+					</ng-template>
+				</nz-input-group>
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-label nzFor="image">Image</nz-form-label>
+			<nz-form-control nzErrorTip="Please input project image!" nzHasFeedback>
+				<nz-upload
+					[nzSize]="2048"
+					[nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'"
+					[(nzFileList)]="fileList"
+					nzListType="picture"
+					[nzBeforeUpload]="beforeUpload"
+				>
+					<button nz-button><i nz-icon nzType="upload"></i>Select File</button>
+				</nz-upload>
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-label nzRequired nzFor="message">Description</nz-form-label>
+			<nz-form-control [nzErrorTip]="combineTpl" nzHasFeedback>
+				<textarea
+					[(ngModel)]="model.description"
+					name="message"
+					required
+					id="message"
+					required
+					minlength="35"
+					maxlength="1000"
+					nz-input
+					placeholder="message"
+					[nzAutosize]="{minRows: 3, maxRows: 6}"
+					#message="ngModel"
+				></textarea>
+				<ng-template #combineTpl let-control>
+					<ng-container *ngIf="message.hasError('maxlength')">MaxLength is 1000</ng-container>
+					<ng-container *ngIf="message.hasError('minlength')">MinLength is 35</ng-container>
+					<ng-container *ngIf="message.hasError('required')">Input is required</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+	</form>
+
+	<ng-template #modalFooter>
+		<button nz-button nzType="default" nzDanger (click)="handleCancel()">Cancel</button>
+		<button nz-button nzType="primary" [disabled]="form.invalid" (click)="submitForm()">Save</button>
+	</ng-template>
+</nz-modal>

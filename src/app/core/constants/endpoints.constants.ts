@@ -6,4 +6,5 @@ export const endpoints = {
 	contact: 'Contact',
 	socialMedia: 'social-media',
 	services: 'services',
+	portfolio: 'portfolio',
 };

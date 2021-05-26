@@ -1,4 +1,6 @@
 export function getBase64(file) {
+	if (file.hasOwnProperty('url')) return new Promise((resolve, reject) => resolve(file['url']));
+
 	return new Promise((resolve, reject) => {
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
