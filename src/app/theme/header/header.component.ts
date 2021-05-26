@@ -76,6 +76,10 @@ export class HeaderComponent implements OnInit {
 						name: 'Management Services',
 						url: 'services/management-service',
 					},
+					{
+						name: 'Management Portfolio',
+						url: 'portfolio/management-portfolio',
+					},
 				],
 			});
 		}
