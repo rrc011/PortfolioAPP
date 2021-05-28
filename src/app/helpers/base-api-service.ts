@@ -34,13 +34,11 @@ export class BaseApiService<T> {
 		return Observable.create((observer: Observer) => {
 			response.subscribe(
 				(res) => {
-					console.log(res);
 					if (res.result.error) observer.error(res.result.error);
 					else observer.next(res.result);
 					observer.complete();
 				},
 				(error) => {
-					console.log(error);
 					observer.error([{title: error.name, detail: this.genericError, error}]);
 				}
 			);
@@ -53,13 +51,11 @@ export class BaseApiService<T> {
 		return Observable.create((observer: Observer) => {
 			response.subscribe(
 				(res) => {
-					console.log(res);
 					if (res.result.error) observer.error(res.result.error);
 					else observer.next(res.result.response);
 					observer.complete();
 				},
 				(error) => {
-					console.log(error);
 					observer.error([{title: error.name, detail: this.genericError, error}]);
 				}
 			);

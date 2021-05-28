@@ -9,7 +9,7 @@
 						<h1 class="text-uppercase">I am {{ model.firstName }} {{ model.lastName }}</h1>
 						<h5 class="text-uppercase">{{ model.occupation }}</h5>
 						<div class="d-flex align-items-center">
-							<a class="primary_btn" href="#"><span>Hire Me</span></a>
+							<a class="primary_btn" [routerLink]="['/contact']"><span>Hire Me</span></a>
 							<a class="primary_btn tr-bg" (click)="getCV()"><span>Get CV</span></a>
 						</div>
 					</div>

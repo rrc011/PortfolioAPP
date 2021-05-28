@@ -33,7 +33,7 @@ export class AlertService {
 	}
 
 	error(message: string) {
-		Swal.fire({
+		return Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
 			text: message,

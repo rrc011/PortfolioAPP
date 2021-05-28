@@ -24,7 +24,6 @@ export class CustomFilePickerAdapter extends FilePickerAdapter {
 		const req = new HttpRequest('POST', api, form, options);
 		return this.http.request(req).pipe(
 			map((res: HttpEvent<any>) => {
-				console.log('send file');
 				if (res.type === HttpEventType.Response) {
 					return res.body.id.toString();
 				} else if (res.type === HttpEventType.UploadProgress) {

@@ -36,7 +36,6 @@ export class ManagePortfolioComponent implements OnInit {
 			this.pageIndex = e.pageIndex;
 		}
 		this._portfolioService.getAll(this.pageIndex, this.pageSize).then((r: any) => {
-			console.log(r);
 			this.lst = r['Items'];
 			this.totalItems = r['TotalCount'];
 		});

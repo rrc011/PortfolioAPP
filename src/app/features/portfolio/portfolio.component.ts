@@ -19,7 +19,6 @@ export class PortfolioComponent implements OnInit {
 	init() {
 		this._portfolioService.getDefaultService().then((r: PortfolioDto[]) => {
 			this.lst = r;
-			console.log(r);
 		});
 	}
 }

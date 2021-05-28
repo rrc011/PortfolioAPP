@@ -37,8 +37,13 @@ export class BasicAuthInterceptor implements HttpInterceptor {
 
 				switch (err.status) {
 					case 401:
-						this._alertService.error('Es necesario autenticar para obtener la respuesta solicitada.');
-						this.authenticationService.logout();
+						debugger;
+						this._alertService
+							.error('Es necesario autenticar para obtener la respuesta solicitada.')
+							.then(() => {
+								debugger;
+								this.authenticationService.logout();
+							});
 						break;
 
 					case 400:
