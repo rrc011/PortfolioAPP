@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
-    "build": "ng build --prod --base-href='https://rrc011.github.io/PortfolioAPP/'",
+    "build": "ng build --prod --base-href=https://rrc011.github.io/PortfolioAPP/",
     "deploy": "ng build --prod --base-href=https://rrc011.github.io/PortfolioAPP/",
     "test": "ng test",
     "lint": "ng lint",
